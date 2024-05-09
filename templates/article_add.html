@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <p><input type="text" name="title" placeholder="Tytuł" value="{{ article.title }}"></p>
+        <p><input type="text" name="author" placeholder="Author" value="{{ article.author }}"></p>
+        <p>
+            <textarea name="content" cols="30" rows="10">{{ article.content }}</textarea>
+        </p>
+        <p>
+            <select name="status">
+                {% for item in status %}
+                    <option value="{{ item.0 }}"
+                            {% if item.0 == article.status %}
+                            selected
+                            {% endif %}
+                    >{{ item.1 }}</option>
+                {% endfor %}
+            </select>
+        </p>
+        <input type="date" name="emission_date" value="{{ article.get_start_emission_date}}">
+        <input type="submit">
+
+
+    </form>
+    {{ article.start_emission }}
+{% endblock %}

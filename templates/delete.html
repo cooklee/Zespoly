@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    <p>Czy jestes pewien ze chcesz usunąć {{ band }}</p>
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" value="yes" name="action">
+        <input type="submit" value="no" name="action">
+    </form>
+{% endblock %}
